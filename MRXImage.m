@@ -2,24 +2,22 @@ function [varargout]=MRXImage(varargin)
 %% MRXImage is a function to reconstruct a source distribution image from NanoMRX data
 %% initialization
 % Optinal name,value pairs: [default]
-%   1. Source: [] if empty, run makeBField.  Otherwise, provide a structure
-%   with B
-%       fields: sourcelocation, sourcestrength, B and truth;
-%   2. Algorithms: ['Linprog'],'sparseApproxLinprog','FOCUSS', 'CVX_penalty',
-%       'CVX_error', 'CVX_Focuss'
-%   3. Plotting: ['off'],'line', 'contour', 'scatter', 'montage', 'stats'
+%   1. B: [] if empty, run makeBField.  Otherwise, provide a vector of 
+%   with B fields
+%   2. truth: [] Structure with fields: sourcelocation, sourcestrength, and B
+%   vector
+%   3. Algorithms: ['SeDuMi'] and 'SDPT3'
+%   4. Plotting: ['off'],'line', 'scatter', 'stats'
 %
 % Parameters: Algorithm-specific parameters include:
-%       L: [1000] lambda value for FOCUSS and CVX_penalty
-%       P: [0.1] p norm for FOCUSS
-%       tol: [0.01*norm(B)] residual tolerance for CVX_error and CVX_Focuss
+%       tol: [0.01*norm(B)] residual tolerance 
 %       TO DO: zthresh (cvx_Delta): [0.01*norm(B)] threshold for zero in CVX_Focuss
+%       maxIter: maximum number of FOCUSS iterations
+%       SNR: the SNR that was used to make the data (only used in output)
 % Options:
 %       Output: [false] print results to cmd window
-%       Save: ['filename'] save files to 'filename'
 %       DrawContour: [false] draw contours of A on scatter plots
 %       DrawSolution: [false] plot the true solution
-%       DrawPhantom: [false] draw the phantom on scatter plots
 
 % Uses the header and makeBField that is in the folder containing MRXImage.m
 dstr=datestr(now,'yy_mm_dd_HHMM');
@@ -255,19 +253,5 @@ if(output)
         end
         fprintf(s.out(:));
             fprintf('=====================================\n\n');
-    end
-    fprintf('=========================\n       All results: \n=========================\n');
-    for ialg = 1:length(Algorithms)
-        alg = Algorithms{ialg};
-        switch alg
-            case 'SeDuMi'
-                s = SeDuMi_Results;
-            case 'SDPT3'
-                s = SDPT3_Results;
-        end
-        for iresult = 1:length(s)
-            fprintf(s(iresults).out(:));
-            fprintf('=====================================\n\n');
-        end
     end
 end
