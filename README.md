@@ -13,3 +13,7 @@ Program files:
 * plotSourceScatter.m: Plots output from MRXImage.m in a scatter plot
 * gaussianDistance.m: Calculates the gaussian distance metric between a reconstructed source and the true source
 * forwardproblem.m: Calculates the full B field using the Biot Savart Law.
+
+To Do
+------
+* Account for tilt of gradiometers @saraloupot
