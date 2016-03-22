@@ -290,10 +290,10 @@ param.scale_data  = scale_data;
 param.printlevel  = printlevel;
 param.ublksize    = ublksize;
 Xbest = X; ybest = y; Zbest = Z;
-dstr=datestr(now,'yy_mm_dd_HHMMSS');
-mkdir(['~/Desktop/CVXResults_',dstr,'/']);
-addpath(['~/Desktop/CVXResults_',dstr,'/']);
-save(['~/Desktop/CVXResults_',dstr,'/cvxout_0'],'X','Xbest','y','ybest','Z','Zbest','rp','AX','param');
+% dstr=datestr(now,'yy_mm_dd_HHMMSS');
+% mkdir(['~/Desktop/CVXResults_',dstr,'/']);
+% addpath(['~/Desktop/CVXResults_',dstr,'/']);
+% save(['~/Desktop/CVXResults_',dstr,'/cvxout_0'],'X','Xbest','y','ybest','Z','Zbest','rp','AX','param');
 %%
 for iter = 1:maxit;
     tstart  = clock;
@@ -722,7 +722,7 @@ for iter = 1:maxit;
         termcode = -9;
         breakyes = 1;
     end
-    save(['~/Desktop/CVXResults_',dstr,'/cvxout_',num2str(iter)],'runhist','X','Xbest','y','ybest','Z','Zbest','b','rp','AX','param');
+%     save(['~/Desktop/CVXResults_',dstr,'/cvxout_',num2str(iter)],'runhist','X','Xbest','y','ybest','Z','Zbest','b','rp','AX','param');
 %     subplot(1,2,1);
 %     plot(X{1,1});
 %     Xout(iter).X=X{1,1};
